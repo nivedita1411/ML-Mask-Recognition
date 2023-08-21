@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mask Detection Video Stream</title>
+</head>
+<body>
+    <video id="video" autoplay></video>
+    <script>
+        const video = document.getElementById('video');
+        video.src = '/video_feed';
+
+        video.onerror = function () {
+            console.error('Error loading video stream.');
+        };
+    </script>
+</body>
+</html>

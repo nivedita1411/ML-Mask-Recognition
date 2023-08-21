@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        
+        .header{
+            /* align-items: center; */
+            background-color: orange;
+            /* width:800px; */
+            border-radius: 5px;
+            text-align: center;
+            height: 100px;
+            padding: 5%;
+            color: white;
+            font-family: sans-serif;
+        }
+        #button{
+            /* padding-top: 20%; */
+            
+            
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            
+
+        }
+        button{
+            height: 50px;
+            width: 100px;
+            border-radius: 10px;
+            background-color: white;
+            color: orange;
+            font-family: sans-serif;
+        }
+
+        @keyframes textAnimation {
+            from {
+                width: 0;
+            }
+            to {
+                width: 100%;
+            }
+        } 
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        #animated-heading {
+
+            overflow: hidden;
+            text-align: center;
+            white-space: nowrap;
+
+        }
+
+        #animated-heading::after {
+            content: attr(data-text);
+            display: inline-block;
+            overflow: hidden;
+            white-space: nowrap;
+            animation: textAnimation 5s steps(40, end);
+        }
+
+        .animated-paragraph.fade-in-animation {
+            /* opacity: 0; */
+            animation: fadeIn 5s ease;
+        }
+
+        .animated-paragraph {
+            animation-delay: 5s; /* Delay for the first paragraph */
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1 id="animated-heading">Welcome to Metro Mall!</h1>
+        <p class="animated-paragraph">To ensure everyone's safety, we will need to check a few things first, like the very mandatory mask</p>
+        <p class="animated-paragraph">Please click on Start to get started!</p>
+    </div>
+    <br>
+    <div id = "button">
+        <button id="startButton"> Start</button>
+
+    </div>
+    <script>
+
+        const startButton = document.getElementById('startButton');
+
+        startButton.addEventListener('click',function()
+        {
+            window.open( 'camera.html', '_blank');
+        });
+
+        const animatedHeading = document.getElementById('animated-heading');
+        const animatedParagraphs = document.querySelectorAll('.animated-paragraph');
+
+        animatedHeading.setAttribute('data-text', animatedHeading.textContent.trim()); // Store the original text
+        animatedHeading.innerHTML = '';
+
+        animatedHeading.style.animationPlayState = 'running';
+
+
+        animatedParagraphs.forEach(paragraph => {
+            paragraph.classList.add('fade-in-animation');
+        });
+
+
+    </script>
+    
+</body>
+</html>
